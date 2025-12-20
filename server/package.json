@@ -1,0 +1,21 @@
+{
+  "name": "llmrpg-server",
+  "version": "1.0.0",
+  "description": "LLMRPG Web Server - D&D 5E Campaign Assistant",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "socket.io": "^4.6.1",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  },
+  "keywords": ["rpg", "dnd", "campaign", "websocket"],
+  "author": "",
+  "license": "MIT"
+}
