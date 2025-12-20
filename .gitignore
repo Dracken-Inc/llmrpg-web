@@ -32,3 +32,14 @@ yarn-error.log*
 
 # OS
 Thumbs.db
+
+# Project-specific (do not sync local test runners, logs, or sensitive tests)
+server/logs/
+server/coverage/
+server/tests/*.integration.test.js
+scripts/start-server.ps1
+scripts/run-auth-tests.ps1
+scripts/run-all-tests.ps1
+test-auth.ps1
+server/db/*.backup.json
+server/db/*.test.json
