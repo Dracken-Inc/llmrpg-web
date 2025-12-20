@@ -1,0 +1,30 @@
+[
+  {
+    "id": "admin-001",
+    "username": "admin",
+    "password": "$2a$10$AeS2ZN4s23ZSbU1X4jN8hOktFSG4XmhWFU4zEb0TccgLToj9muZXe",
+    "permissions": [
+      "admin",
+      "user"
+    ],
+    "createdAt": "2025-12-20T22:55:58.193Z"
+  },
+  {
+    "id": "user-001",
+    "username": "user",
+    "password": "$2a$10$qb.TalAME/L3UEyYAnH3VeTphTvwygVwm7FD77QxzWPpJSEWMLAba",
+    "permissions": [
+      "user"
+    ],
+    "createdAt": "2025-12-20T22:55:58.244Z"
+  },
+  {
+    "id": "user-1766271358245",
+    "username": "testuser",
+    "password": "$2a$10$KD3SD/4A8sdu795pxS5UM.zNz7dfqBpdY3cfoy0Kf0TirEM9I0Wca",
+    "permissions": [
+      "user"
+    ],
+    "createdAt": "2025-12-20T22:55:58.297Z"
+  }
+]
