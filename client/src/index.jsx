@@ -1,12 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import App from './App';
 import './index.css';
 import { GameProvider } from './context/GameContext';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+ReactDOM.render(
   <GameProvider>
     <App />
-  </GameProvider>
+  </GameProvider>,
+  document.getElementById('root')
 );

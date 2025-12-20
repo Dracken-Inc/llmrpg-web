@@ -1,1 +1,28 @@
-[]
+[
+  {
+    "id": "1766268910673",
+    "createdAt": "2025-12-20T22:15:10.673Z",
+    "name": "Thorin Ironforge",
+    "class": "Fighter",
+    "level": 5,
+    "campaignId": "demo-campaign",
+    "stats": {
+      "str": 16,
+      "dex": 12,
+      "con": 15,
+      "int": 10,
+      "wis": 11,
+      "cha": 8
+    },
+    "hp": {
+      "current": 42,
+      "max": 42,
+      "temp": 0
+    },
+    "armorClass": 18,
+    "speed": 30,
+    "inventory": [],
+    "spells": [],
+    "effects": []
+  }
+]

@@ -65,9 +65,12 @@ export const GameProvider = ({ children }) => {
 
     socketService.on('characterUpdated', (character) => {
       setCharacters(prev => prev.map(c => c.id === character.id ? character : c));
-      if (currentCharacter && currentCharacter.id === character.id) {
-        setCurrentCharacter(character);
-      }
+      setCurrentCharacter(prevChar => {
+        if (prevChar && prevChar.id === character.id) {
+          return character;
+        }
+        return prevChar;
+      });
     });
 
     // Load initial data
@@ -75,9 +78,12 @@ export const GameProvider = ({ children }) => {
       try {
         const chars = await apiService.getCharacters(campaignId);
         setCharacters(chars);
-        if (chars.length > 0 && !currentCharacter) {
-          setCurrentCharacter(chars[0]);
-        }
+        setCurrentCharacter(prevChar => {
+          if (!prevChar && chars.length > 0) {
+            return chars[0];
+          }
+          return prevChar;
+        });
       } catch (error) {
         console.error('Failed to load characters:', error);
       }
