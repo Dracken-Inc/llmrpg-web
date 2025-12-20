@@ -105,5 +105,39 @@
     "name": "New Name",
     "description": "Original Description",
     "updatedAt": "2025-12-20T23:06:31.835Z"
+  },
+  {
+    "id": "1766272745828",
+    "createdAt": "2025-12-20T23:19:05.828Z",
+    "name": "Test Campaign",
+    "description": "A test campaign"
+  },
+  {
+    "id": "1766272745831",
+    "createdAt": "2025-12-20T23:19:05.831Z",
+    "name": "Minimal Campaign"
+  },
+  {
+    "id": "1766272745833",
+    "createdAt": "2025-12-20T23:19:05.833Z",
+    "name": "Find Me Campaign"
+  },
+  {
+    "id": "1766272745835",
+    "createdAt": "2025-12-20T23:19:05.835Z",
+    "name": "Get By ID Test"
+  },
+  {
+    "id": "1766272745837",
+    "createdAt": "2025-12-20T23:19:05.837Z",
+    "name": "Updated Name",
+    "updatedAt": "2025-12-20T23:19:05.837Z"
+  },
+  {
+    "id": "1766272745839",
+    "createdAt": "2025-12-20T23:19:05.839Z",
+    "name": "New Name",
+    "description": "Original Description",
+    "updatedAt": "2025-12-20T23:19:05.839Z"
   }
 ]
