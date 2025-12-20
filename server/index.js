@@ -10,6 +10,8 @@ const chatManager = require('./managers/chatManager');
 
 const app = express();
 const server = http.createServer(app);
+// Note: CORS is set to '*' for development. In production, restrict to specific origins:
+// const io = new Server(server, { cors: { origin: 'https://yourdomain.com' } });
 const io = new Server(server, { 
   cors: { 
     origin: '*',
