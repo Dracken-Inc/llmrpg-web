@@ -7,6 +7,9 @@ const characterManager = require('./managers/characterManager');
 const initiativeManager = require('./managers/initiativeManager');
 const encounterManager = require('./managers/encounterManager');
 const chatManager = require('./managers/chatManager');
+const userManager = require('./managers/userManager');
+const { authenticateToken, requirePermission } = require('./middleware/auth');
+const { asyncHandler, errorHandler } = require('./middleware/errorHandler');
 
 const app = express();
 const server = http.createServer(app);
@@ -22,12 +25,73 @@ const io = new Server(server, {
 app.use(cors());
 app.use(express.json());
 
-// Campaign API routes
-app.get('/api/campaigns', (req, res) => {
+// Health check (public)
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'ok', timestamp: new Date().toISOString() });
+});
+
+// Authentication routes (public)
+app.post('/api/auth/register', asyncHandler(async (req, res) => {
+  const { username, password } = req.body;
+  const result = userManager.register(username, password);
+  
+  if (!result.success) {
+    return res.status(400).json({
+      error: true,
+      code: 'REGISTRATION_FAILED',
+      message: result.error,
+      status: 400
+    });
+  }
+
+  res.json({
+    success: true,
+    token: result.token,
+    user: result.user
+  });
+}));
+
+app.post('/api/auth/login', asyncHandler(async (req, res) => {
+  const { username, password } = req.body;
+  const result = userManager.login(username, password);
+  
+  if (!result.success) {
+    return res.status(401).json({
+      error: true,
+      code: 'LOGIN_FAILED',
+      message: result.error,
+      status: 401
+    });
+  }
+
+  res.json({
+    success: true,
+    token: result.token,
+    user: result.user
+  });
+}));
+
+app.post('/api/auth/logout', authenticateToken, asyncHandler(async (req, res) => {
+  res.json({
+    success: true,
+    message: 'Logged out successfully'
+  });
+}));
+
+app.get('/api/auth/me', authenticateToken, asyncHandler(async (req, res) => {
+  const user = userManager.getById(req.user.userId);
+  res.json({
+    success: true,
+    user
+  });
+}));
+
+// Campaign API routes (protected)
+app.get('/api/campaigns', authenticateToken, (req, res) => {
   res.json(campaignManager.getAll());
 });
 
-app.get('/api/campaigns/:id', (req, res) => {
+app.get('/api/campaigns/:id', authenticateToken, (req, res) => {
   const campaign = campaignManager.getById(req.params.id);
   if (campaign) {
     res.json(campaign);
@@ -36,12 +100,12 @@ app.get('/api/campaigns/:id', (req, res) => {
   }
 });
 
-app.post('/api/campaigns', (req, res) => {
+app.post('/api/campaigns', authenticateToken, (req, res) => {
   const campaign = campaignManager.create(req.body);
   res.status(201).json(campaign);
 });
 
-app.put('/api/campaigns/:id', (req, res) => {
+app.put('/api/campaigns/:id', authenticateToken, (req, res) => {
   const campaign = campaignManager.update(req.params.id, req.body);
   if (campaign) {
     res.json(campaign);
@@ -50,7 +114,7 @@ app.put('/api/campaigns/:id', (req, res) => {
   }
 });
 
-app.delete('/api/campaigns/:id', (req, res) => {
+app.delete('/api/campaigns/:id', authenticateToken, (req, res) => {
   const success = campaignManager.delete(req.params.id);
   if (success) {
     res.json({ success: true });
@@ -60,7 +124,7 @@ app.delete('/api/campaigns/:id', (req, res) => {
 });
 
 // Character API routes
-app.get('/api/characters', (req, res) => {
+app.get('/api/characters', authenticateToken, (req, res) => {
   const { campaignId } = req.query;
   if (campaignId) {
     res.json(characterManager.getByCampaign(campaignId));
@@ -69,7 +133,7 @@ app.get('/api/characters', (req, res) => {
   }
 });
 
-app.get('/api/characters/:id', (req, res) => {
+app.get('/api/characters/:id', authenticateToken, (req, res) => {
   const character = characterManager.getById(req.params.id);
   if (character) {
     res.json(character);
@@ -78,12 +142,12 @@ app.get('/api/characters/:id', (req, res) => {
   }
 });
 
-app.post('/api/characters', (req, res) => {
+app.post('/api/characters', authenticateToken, (req, res) => {
   const character = characterManager.create(req.body);
   res.status(201).json(character);
 });
 
-app.put('/api/characters/:id', (req, res) => {
+app.put('/api/characters/:id', authenticateToken, (req, res) => {
   const character = characterManager.update(req.params.id, req.body);
   if (character) {
     res.json(character);
@@ -92,7 +156,7 @@ app.put('/api/characters/:id', (req, res) => {
   }
 });
 
-app.delete('/api/characters/:id', (req, res) => {
+app.delete('/api/characters/:id', authenticateToken, (req, res) => {
   const success = characterManager.delete(req.params.id);
   if (success) {
     res.json({ success: true });
@@ -181,6 +245,9 @@ io.on('connection', (socket) => {
     console.log('Client disconnected:', socket.id);
   });
 });
+
+// Error handling middleware (must be last)
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 3001;
 server.listen(PORT, () => {
