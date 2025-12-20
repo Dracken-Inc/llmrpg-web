@@ -4,5 +4,106 @@
     "createdAt": "2025-12-20T22:15:00.714Z",
     "name": "Test Campaign",
     "description": "A test D&D campaign"
+  },
+  {
+    "id": "1766271773155",
+    "createdAt": "2025-12-20T23:02:53.155Z",
+    "name": "Test Campaign",
+    "description": "A test campaign"
+  },
+  {
+    "id": "1766271773158",
+    "createdAt": "2025-12-20T23:02:53.158Z"
+  },
+  {
+    "id": "1766271773166",
+    "createdAt": "2025-12-20T23:02:53.166Z",
+    "name": "Find Me Campaign"
+  },
+  {
+    "id": "1766271773167",
+    "createdAt": "2025-12-20T23:02:53.167Z",
+    "name": "Get By ID Test"
+  },
+  {
+    "id": "1766271773169",
+    "createdAt": "2025-12-20T23:02:53.169Z",
+    "name": "Updated Name",
+    "updatedAt": "2025-12-20T23:02:53.170Z"
+  },
+  {
+    "id": "1766271773171",
+    "createdAt": "2025-12-20T23:02:53.171Z",
+    "name": "New Name",
+    "description": "Original Description",
+    "updatedAt": "2025-12-20T23:02:53.171Z"
+  },
+  {
+    "id": "1766271816581",
+    "createdAt": "2025-12-20T23:03:36.581Z",
+    "name": "Test Campaign",
+    "description": "A test campaign"
+  },
+  {
+    "id": "1766271816584",
+    "createdAt": "2025-12-20T23:03:36.584Z",
+    "name": "Minimal Campaign"
+  },
+  {
+    "id": "1766271816585",
+    "createdAt": "2025-12-20T23:03:36.585Z",
+    "name": "Find Me Campaign"
+  },
+  {
+    "id": "1766271816586",
+    "createdAt": "2025-12-20T23:03:36.586Z",
+    "name": "Get By ID Test"
+  },
+  {
+    "id": "1766271816588",
+    "createdAt": "2025-12-20T23:03:36.588Z",
+    "name": "Updated Name",
+    "updatedAt": "2025-12-20T23:03:36.588Z"
+  },
+  {
+    "id": "1766271816590",
+    "createdAt": "2025-12-20T23:03:36.590Z",
+    "name": "New Name",
+    "description": "Original Description",
+    "updatedAt": "2025-12-20T23:03:36.590Z"
+  },
+  {
+    "id": "1766271991825",
+    "createdAt": "2025-12-20T23:06:31.825Z",
+    "name": "Test Campaign",
+    "description": "A test campaign"
+  },
+  {
+    "id": "1766271991828",
+    "createdAt": "2025-12-20T23:06:31.828Z",
+    "name": "Minimal Campaign"
+  },
+  {
+    "id": "1766271991830",
+    "createdAt": "2025-12-20T23:06:31.830Z",
+    "name": "Find Me Campaign"
+  },
+  {
+    "id": "1766271991831",
+    "createdAt": "2025-12-20T23:06:31.831Z",
+    "name": "Get By ID Test"
+  },
+  {
+    "id": "1766271991833",
+    "createdAt": "2025-12-20T23:06:31.833Z",
+    "name": "Updated Name",
+    "updatedAt": "2025-12-20T23:06:31.833Z"
+  },
+  {
+    "id": "1766271991835",
+    "createdAt": "2025-12-20T23:06:31.835Z",
+    "name": "New Name",
+    "description": "Original Description",
+    "updatedAt": "2025-12-20T23:06:31.835Z"
   }
 ]
