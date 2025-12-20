@@ -18,8 +18,9 @@ try {
 # Test 2: Register new user
 Write-Host "`n[Test 2] Register new user" -ForegroundColor Yellow
 try {
+    $unique = ([System.Guid]::NewGuid().ToString().Substring(0,8))
     $body = @{
-        username = "testuser"
+        username = "testuser_$unique"
         password = "test123"
     } | ConvertTo-Json
     
