@@ -2,7 +2,7 @@
   {
     "id": "admin-001",
     "username": "admin",
-    "password": "$2a$10$AeS2ZN4s23ZSbU1X4jN8hOktFSG4XmhWFU4zEb0TccgLToj9muZXe",
+    "password": "$2a$10$m42C5ntbqhCcCiVMoLCVR.azpfN9tDQUiZrGjy9X1K.c8QqOSacju",
     "permissions": [
       "admin",
       "user"
@@ -12,7 +12,7 @@
   {
     "id": "user-001",
     "username": "user",
-    "password": "$2a$10$qb.TalAME/L3UEyYAnH3VeTphTvwygVwm7FD77QxzWPpJSEWMLAba",
+    "password": "$2a$10$FWTCzpwUYd2vtbvSUR3Pm.BW4f0i4n6tXJzEmp9Zeo.cF5.g0yIEC",
     "permissions": [
       "user"
     ],
