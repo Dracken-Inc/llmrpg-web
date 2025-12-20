@@ -2,13 +2,22 @@ param(
   [string]$ServerDir = "d:\llmrpg-web\server",
   [string]$RepoRoot = "d:\llmrpg-web",
   [string]$BaseUrl = "http://localhost:3001",
-  [int]$TimeoutSec = 30
+  [int]$TimeoutSec = 30,
+  [switch]$KillExisting
 )
 
 $ErrorActionPreference = "Stop"
 
 $logDir = Join-Path $ServerDir "logs"
 $pidFile = Join-Path $ServerDir "server.pid"
+
+# Optionally kill any process listening on the target port to avoid conflicts
+if ($KillExisting) {
+  try {
+    $conns = Get-NetTCPConnection -LocalPort ([uri]$BaseUrl).Port -State Listen -ErrorAction SilentlyContinue
+    foreach ($c in $conns) { if ($c.OwningProcess) { Stop-Process -Id $c.OwningProcess -Force -ErrorAction SilentlyContinue } }
+  } catch {}
+}
 
 # Start server in background with logs
 & (Join-Path $RepoRoot "scripts\start-server.ps1") -WorkingDir $ServerDir | Out-Null

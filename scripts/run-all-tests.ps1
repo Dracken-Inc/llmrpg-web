@@ -1,7 +1,8 @@
 param(
   [string]$RepoRoot = "d:\llmrpg-web",
   [string]$ServerDir = "d:\llmrpg-web\server",
-  [int]$TimeoutSec = 30
+  [int]$TimeoutSec = 30,
+  [int]$JestTimeoutSec = 600
 )
 
 $ErrorActionPreference = "Stop"
@@ -13,11 +14,21 @@ $timestamp = Get-Date -Format "yyyyMMdd-HHmmss"
 $jestLog = Join-Path $logDir "jest-tests-$timestamp.log"
 
 Write-Host "Running Jest tests (serial) with coverage..." -ForegroundColor Cyan
-Push-Location $ServerDir
+
+# Ensure non-interactive mode for Jest
+$env:CI = "true"
+
+# Run Jest via Start-Process with timeout and log redirection
+$npmExe = "npm.cmd"
+if (-not (Get-Command $npmExe -ErrorAction SilentlyContinue)) { $npmExe = "npm" }
+
+$jestProc = Start-Process -FilePath $npmExe -ArgumentList "run","test:serial" -WorkingDirectory $ServerDir -NoNewWindow -RedirectStandardOutput $jestLog -RedirectStandardError $jestLog -PassThru
+
 try {
-  npm run test:serial *>&1 | Tee-Object -FilePath $jestLog | Out-Null
-} finally {
-  Pop-Location
+  Wait-Process -Id $jestProc.Id -Timeout $JestTimeoutSec -ErrorAction Stop
+} catch {
+  Write-Host "Jest exceeded timeout ($JestTimeoutSec s). Terminating..." -ForegroundColor Yellow
+  try { Stop-Process -Id $jestProc.Id -Force } catch {}
 }
 
 Write-Host "Jest complete. Log: $jestLog" -ForegroundColor Gray
