@@ -1,12 +1,15 @@
 {
   "name": "llmrpg-web",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
   "dependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
-    "socket.io-client": "^4.6.1"
+    "socket.io-client": "^4.6.1",
+    "typescript": "^5.3.3",
+    "@types/react": "^18.2.45",
+    "@types/react-dom": "^18.2.18"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -28,6 +31,11 @@
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
+
       "last 1 safari version"
     ]
   }
